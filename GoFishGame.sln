@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GoFishGame", "GoFishGame\GoFishGame.vcxproj", "{D63AB61A-B312-408A-BED7-A0AB793C9E93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Debug|x64.ActiveCfg = Debug|x64
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Debug|x64.Build.0 = Debug|x64
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Debug|x86.ActiveCfg = Debug|Win32
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Debug|x86.Build.0 = Debug|Win32
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Release|x64.ActiveCfg = Release|x64
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Release|x64.Build.0 = Release|x64
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Release|x86.ActiveCfg = Release|Win32
+		{D63AB61A-B312-408A-BED7-A0AB793C9E93}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59B71D45-3476-4433-9EA2-23B923E812DA}
+	EndGlobalSection
+EndGlobal
