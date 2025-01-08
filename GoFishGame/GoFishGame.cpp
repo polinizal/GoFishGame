@@ -1,11 +1,22 @@
 ﻿// GoFishGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
+#include "deck.h"
 #include <iostream>
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::vector<Card> deck = createDeck();
+    shuffleDeck(deck);
+
+    // Draw 5 random cards
+    std::cout << "Drawing 6 random cards:\n";
+    for (int i = 0; i < 6; ++i) {
+        Card card = dealCard(deck);
+        std::cout << card.rank << " of " << card.suit << std::endl;
+    }
+
+    std::cout << "Remaining cards in deck: " << deck.size() << "\n";
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
