@@ -17,6 +17,6 @@ struct Card
 //Functions 
 std::string cardToString(const Card& card);
 bool areCardsEqualRank(const Card& card1, const Card& card2);
-
+bool isValidRank(const std::string& rank);
 
 #endif
