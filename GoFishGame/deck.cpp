@@ -4,23 +4,6 @@
 #include <iostream>
 #include "card.h"
 
-
-//std::vector<Card> createDeck()
-//{
-//	std::vector<Card> deck;
-//
-//	for (int i = 0; i < SUITS.size(); i++)
-//	{
-//		for (int j = 0; j < RANKS.size(); j++)
-//		{
-//			Card card;
-//			card.suit = SUITS[i];
-//			card.rank = RANKS[j];
-//			deck.push_back(card);
-//		}
-//	}
-//	return deck;
-//}
 Deck createDeck() {
 
 	Deck deck;
@@ -81,5 +64,5 @@ void dealCards(Deck& deck, std::vector<Card>& playerHand, std::vector<Card>& com
 
 bool areThereCardsLeft(const Deck& deck)
 {
-	return !deck.cards.empty();
+	return !deck.cards.empty(); //deck.cards.empty() returns true if the deck is empty
 }
