@@ -237,7 +237,7 @@ void handleComputerTurn(Player& player, Player& computer, Deck& deck) {
     }
 }
 
-bool isGameOver(const Player& player, const Player& computer, const Deck& deck) {
+bool isGameOver(const Player& player, const Player& computer) {
     // The game is over if one player owns all the sets
     return player.claimedSets.size() == RANKS.size() || computer.claimedSets.size() == RANKS.size();
 }
@@ -265,7 +265,7 @@ void handleSecondPhase(Player& player, Player& computer) {
                 }
 
                 // Check if the game is over
-                if (isGameOver(player, computer, Deck{})) {
+                if (isGameOver(player, computer)) {
                     determineWinner(player, computer);
                     return;
                 }
@@ -295,7 +295,7 @@ void handleSecondPhase(Player& player, Player& computer) {
                 }
 
                 // Check if the game is over
-                if (isGameOver(player, computer, Deck{})) {
+                if (isGameOver(player, computer)) {
                     determineWinner(player, computer);
                     return;
                 }
@@ -306,6 +306,11 @@ void handleSecondPhase(Player& player, Player& computer) {
             }
         }
     }
+}
+
+bool IsReadyForSecondPhase(const Deck& deck, const Player& player, const Player& computer)
+{
+    return (!areThereCardsLeft(deck)) && (player.hand.empty()) && (computer.hand.empty());
 }
 
 
