@@ -1,6 +1,7 @@
 #include "player.h"
 #include <iostream>
 
+
 void addCardToHand(Player& player, const Card& card)
 {
 	player.hand.push_back(card);
