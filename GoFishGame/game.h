@@ -11,5 +11,7 @@ void handlePlayerTurn(Player& player, Player& computer, Deck& deck);
 void handleComputerTurn(Player& player, Player& computer, Deck& deck);
 bool isGameOver(const Player& player, const Player& computer, const Deck& deck);
 Player determineWinner(const Player& player, const Player& computer);
+void handleSecondPhase(Player& player, Player& computer);	
+
 
 #endif
