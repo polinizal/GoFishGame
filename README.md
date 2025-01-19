@@ -25,7 +25,7 @@ The project is fully written in C++. The following functionalities, helper class
 2. Open the .vcxproj file with Visual Studio to build and run the project.
 3. Follow the on-screen instructions to play the game.
 ## **Commands**
-_Needed commands for the gane_
+_Needed commands for the game_
 ```
 1. ask <rank>  // ask 7
 
