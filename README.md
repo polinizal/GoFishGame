@@ -1,14 +1,45 @@
 # GoFishGame
-Команди: 
 
--ask <rank>  *// ask 7*
+## **Overview**
 
--claim <rank>  *// правиш компот claim 6*
+This project implements a console-based version of the classic card game "Go Fish." Players compete to collect sets of four cards of the same rank by asking opponents for specific cards. The game ends when all sets have been collected, and the player with the most sets wins!
 
--check deck   *// помощна команда, проверява дали има карти в тестето*
+## **Features**
+- Two-player gameplay: The game allows two players to compete.
+- Intelligent card handling: The game manages a shuffled deck and player hands.
+- Interactive gameplay: Players can ask each other for cards and draw from the deck.
+- Score tracking: The game keeps track of collected sets and determines the winner.
+## **Code Structure**
+- **card.h** and **card.cpp**: Define the Card class for individual card properties and operations.
+- **deck.h** and **deck.cpp**: Manage the Deck class for shuffling and dealing cards.
+- **player.h** and **player.cpp**: Handle the Player class, including player actions and card management.
+- **game.h** and **game.cpp**: Control the overall game logic, including turns, score tracking, and game state.
+## **How to Run**
+1. Clone the repository and navigate to the project directory.
+2. Open the .vcxproj file with Visual Studio to build and run the project.
+3. Follow the on-screen instructions to play the game.
+## **Commands**
+_Needed commands for the gane_
+```
+ask <rank>  // ask 7
 
--draw  *// теглиш карта от тестето*
+claim <rank>  // claim 6
 
--GoFish!  *// Гледай си работата (демек нямаш картата за която те питат)*
+draw  // to draw a card from the deck
 
--show  *//показва какво имаш в ръката си на момента*
+GoFish!  // type "GoFish!" if you don't have the requested card 
+
+show  // shows the status of your current hand
+```
+## **Future Improvements**
+- *Add support for more than two players.*
+- *Implement an AI player for single-player mode.*
+- *Enhance the user interface for better gameplay experience.*
+- *Add more functionality and logic for computer turns and responses - make it smarter*
+
+***Enjoy playing Go Fish!***
+![image](https://github.com/user-attachments/assets/33dcf84e-374b-4a83-9a2d-6fcb1c5d9470)
+
+
+
+
