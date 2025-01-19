@@ -6,6 +6,10 @@ void addCardToHand(Player& player, const Card& card)
 {
 	player.hand.push_back(card);
 }
+void handEmpty(Player& player)
+{
+	player.hand.clear();
+}
 
 void removeCardsByRank(Player& player, const std::string& rank)
 {
@@ -13,7 +17,7 @@ void removeCardsByRank(Player& player, const std::string& rank)
 	for (size_t i = 0; i < player.hand.size(); i++) {
 		if (player.hand[i].rank != rank) {
 			newHand.push_back(player.hand[i]);
-		}	
+		}
 	}
 	player.hand = newHand;
 }
