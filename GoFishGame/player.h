@@ -16,10 +16,14 @@ void removeCardsByRank(Player& player, const std::string& rank);
 
 bool hasFullSet(const Player& player, const std::string& rank);
 
+bool isHandEmpty(const Player& player);
+
 void claimSet(Player& player, const std::string& rank);
 
 void displayHand(const Player& player);
 
 void handEmpty(Player& player);
+
+bool isPlayerClaimedSetEmpty(const Player& player);
 
 #endif

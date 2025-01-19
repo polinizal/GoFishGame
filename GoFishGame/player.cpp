@@ -11,6 +11,11 @@ void handEmpty(Player& player)
 	player.hand.clear();
 }
 
+bool isPlayerClaimedSetEmpty(const Player& player)
+{
+	return player.claimedSets.empty();
+}
+
 void removeCardsByRank(Player& player, const std::string& rank)
 {
 	std::vector<Card> newHand;
@@ -31,6 +36,11 @@ bool hasFullSet(const Player& player, const std::string& rank)
 		}
 	}
 	return count == 4;
+}
+
+bool isHandEmpty(const Player& player)
+{
+	return player.hand.empty();
 }
 
 void claimSet(Player& player, const std::string& rank)
