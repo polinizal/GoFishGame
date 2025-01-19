@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-This project implements a console-based version of the classic card game "Go Fish." Players compete to collect sets of four cards of the same rank by asking opponents for specific cards. The game ends when all sets have been collected, and the player with the most sets wins!
+This project implements a console-based version of the classic card game "Go Fish." Players compete to collect sets of four cards of the same rank by asking opponents for specific cards. The game ends when all sets have been collected, and the player, owner of all sets, wins!
 
 ## **Features**
 - Two-player gameplay: The game allows two players to compete.
