@@ -14,6 +14,12 @@ This project implements a console-based version of the classic card game "Go Fis
 - **deck.h** and **deck.cpp**: Manage the Deck class for shuffling and dealing cards.
 - **player.h** and **player.cpp**: Handle the Player class, including player actions and card management.
 - **game.h** and **game.cpp**: Control the overall game logic, including turns, score tracking, and game state.
+## **Technologies**
+The project is fully written in C++. The following functionalities, helper classes, and libraries were used:
+- Structures
+- **std::string**
+- **std::vector**
+- *rand()*, *srand()*, and *time()* found in the **cstdlib** and **ctime** libraries.
 ## **How to Run**
 1. Clone the repository and navigate to the project directory.
 2. Open the .vcxproj file with Visual Studio to build and run the project.
@@ -21,15 +27,15 @@ This project implements a console-based version of the classic card game "Go Fis
 ## **Commands**
 _Needed commands for the gane_
 ```
-ask <rank>  // ask 7
+1. ask <rank>  // ask 7
 
-claim <rank>  // claim 6
+2. claim <rank>  // claim 6
 
-draw  // to draw a card from the deck
+3. draw  // to draw a card from the deck
 
-GoFish!  // type "GoFish!" if you don't have the requested card 
+4. GoFish!  // type "GoFish!" if you don't have the requested card 
 
-show  // shows the status of your current hand
+5. show  // shows the status of your current hand
 ```
 ## **Future Improvements**
 - *Add support for more than two players.*
@@ -38,6 +44,8 @@ show  // shows the status of your current hand
 - *Add more functionality and logic for computer turns and responses - make it smarter*
 
 ***Enjoy playing Go Fish!***
+
+
 ![image](https://github.com/user-attachments/assets/33dcf84e-374b-4a83-9a2d-6fcb1c5d9470)
 
 
