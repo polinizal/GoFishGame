@@ -1,6 +1,20 @@
-﻿#include "game.h"
-#include <iostream>
+﻿/**
+ *
+ * Solution to course project # 8
+ * Introduction to programming course
+ * Faculty of Mathematics and Informatics of Sofia University
+ * Winter semester 2023/2024
+ *
+ * @author Polina Staneva
+ * @idnumber 4MI0600481
+ * @compiler VC
+ *
+ * <main game file>
+ *
+ */
 
+#include "game.h"
+#include <iostream>
 
 int main() {
     // Create player and computer structures
