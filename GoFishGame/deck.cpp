@@ -32,9 +32,6 @@ void shuffleDeck(Deck& deck) {
 }
 
 Card drawCard(Deck& deck) {
-    if (deck.cards.empty()) {
-        throw std::runtime_error("Deck is empty! Cannot draw a card.");
-    }
     size_t randomIndex = std::rand() % deck.cards.size();
     Card drawnCard = deck.cards[randomIndex];
     swapCards(deck, randomIndex, deck.cards.size() - 1);
