@@ -29,7 +29,7 @@ void handlePlayerTurn(Player& player, Player& computer, Deck& deck) {
             }
             else {
                 std::string command;
-                std::cout << "Enter your command (ask <rank>, claim <rank>, show, check deck): ";
+                std::cout << "Enter your command (ask <rank>, claim <rank>, show): ";
                 std::cin >> command;
 
                 if (command == "show") {
