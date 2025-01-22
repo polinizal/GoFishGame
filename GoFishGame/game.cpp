@@ -3,6 +3,10 @@
 #include <cstdlib> 
 #include <ctime>   
 
+//Constants
+const int ASKAGAIN = 3;
+const int INVALID_COMMAND = 2;
+const int END_TURN = 2;
 
 // Initializes the game: creates a deck, shuffles it, and deals cards
 void initializeGame(Player& player, Player& computer, Deck& deck) {
@@ -35,7 +39,7 @@ void handlePlayerTurn(Player& player, Player& computer, Deck& deck) {
                         std::string rank;
                         std::cin >> rank;
                         bool hasRank = false;
-                        checkPlayerForRank(player, rank, hasRank);
+                        checkPlayerForRank(player, rank, hasRank); // Check if the player has the rank
 
                         if (!hasRank) {
                             std::cout << "You can only ask for ranks you currently have in your hand!" << std::endl;
@@ -55,9 +59,9 @@ void handlePlayerTurn(Player& player, Player& computer, Deck& deck) {
                             }
 
                             std::string drawCommand;
-                            int retFlag;
+                            int retFlag; 
                             handlePlayerDrawCommand(drawCommand, deck, player, rank, retFlag);
-                            if (retFlag == 3) continue;
+                            if (retFlag == ASKAGAIN) continue; // Ask again if the drawn card matches the rank
 
                             break; // End the turn if no match
                         }
@@ -89,7 +93,7 @@ void handlePlayerClaimCommand(Player& player, std::string& rank)
 
 void handlePlayerDrawCommand(std::string& drawCommand, Deck& deck, Player& player, std::string& rank, int& retFlag)
 {
-    retFlag = 1;
+    retFlag = 1; // Default return flag
     while (true) {
         std::cout << "Type 'draw' to draw a card: ";
         std::cin >> drawCommand;
@@ -102,20 +106,20 @@ void handlePlayerDrawCommand(std::string& drawCommand, Deck& deck, Player& playe
     }
 
     Card drawn = drawCard(deck);
-    if (!drawn.rank.empty()) {
+    if (!drawn.rank.empty()) { // Check if a card was drawn
         std::cout << "You drew: " << drawn.rank << " of " << drawn.suit << std::endl;
         addCardToHand(player, drawn);
 
         if (drawn.rank == rank) {
             std::cout << "You drew a " << rank << "! You can ask again." << std::endl;
-            { retFlag = 3; return; };
+            { retFlag = ASKAGAIN; return; }; // Ask again if the drawn card matches the rank
         }
     }
 }
 
 void checkComputerForRank(Player& computer, std::string& rank, bool& found, Player& player)
 {
-    for (size_t i = 0; i < computer.hand.size(); i++) {
+    for (size_t i = 0; i < computer.hand.size(); i++) { 
         if (computer.hand[i].rank == rank) {
             found = true;
             addCardToHand(player, computer.hand[i]);
@@ -148,7 +152,7 @@ void handlePlayerDrawWhenEmptyHand(Deck& deck, Player& player, bool& playerPlayi
                 if (!drawn.rank.empty()) {
                     std::cout << "You drew: " << drawn.rank << " of " << drawn.suit << std::endl;
                     addCardToHand(player, drawn);
-                    break; // End this forced draw action
+                    break; // End draw action
                 }
             }
             else {
@@ -165,50 +169,50 @@ void handlePlayerDrawWhenEmptyHand(Deck& deck, Player& player, bool& playerPlayi
 
 // Handles the computer's turn
 void handleComputerTurn(Player& player, Player& computer, Deck& deck) {
-    std::cout << "\nComputer's turn!" << std::endl;
-    bool computerPlaying = true;
-    while (computerPlaying) {
-        checkComputerForFullSets(computer); // Check for full sets
-        // Check if the computer's hand is empty
-        if (isHandEmpty(computer)) {
-            std::cout << "The computer's hand is empty. It must draw a card to continue." << std::endl;
-            bool retFlag;
-            handleComputerDrawWhenEmptyHand(deck, computer, retFlag);
-            if (retFlag) return;
-        }
-        else {
-            size_t randomIndex = std::rand() % computer.hand.size(); // Randomly select a rank from the computer's hand to ask for
-            std::string rankToAsk = computer.hand[randomIndex].rank;
+     std::cout << "\nComputer's turn!" << std::endl;
+     bool computerPlaying = true;
+     while (computerPlaying) {
+            checkComputerForFullSets(computer); // Check for full sets
 
-            while (true) {
-                    std::cout << "The computer requests all cards of rank " << rankToAsk << ". Enter 'give <rank>', 'show' or 'GoFish!': ";
-                    std::string command, providedRank;
-                    std::cin >> command;
-                    if (command == "give") {
-                        std::cin >> providedRank;
-                        int retFlag;
-                        handlePlayerGiveCommand(providedRank, rankToAsk, player, computer, retFlag);
-                        if (retFlag == 2) break;
-                        if (retFlag == 3) continue;
-
-                    }
-                    else if (command == "GoFish!") {
-                        int retFlag;
-                        handleComputerGoFishCommand(deck, computer, rankToAsk, computerPlaying, retFlag);
-                        if (retFlag == 2) break;
-                    }
-                    else if (command == "show") {
-                        displayHand(player);
-                        continue;
-                    }
-                    else {
-                        std::cout << "Invalid command. Please type 'give <rank>' or 'GoFish!': \n";
-                        continue;
-                    }
+            if (isHandEmpty(computer)) { // Check if the computer's hand is empty
+                std::cout << "The computer's hand is empty. It must draw a card to continue." << std::endl;
+                bool retFlag;
+                handleComputerDrawWhenEmptyHand(deck, computer, retFlag);
+                if (retFlag) return; // End the computer's turn
             }
-        }
-        checkForComputerSets(computer); // Check for full sets
-    }
+            else {
+                size_t randomIndex = std::rand() % computer.hand.size(); // Randomly select a rank from the computer's hand to ask for
+                std::string rankToAsk = computer.hand[randomIndex].rank;
+
+                while (true) {
+                        std::cout << "The computer requests all cards of rank " << rankToAsk << ". Enter 'give <rank>', 'show' or 'GoFish!': ";
+                        std::string command, providedRank;
+                        std::cin >> command;
+                        if (command == "give") {
+                            std::cin >> providedRank;
+                            int retFlag;
+                            handlePlayerGiveCommand(providedRank, rankToAsk, player, computer, retFlag);
+                            if (retFlag == ASKAGAIN) break;
+                            if (retFlag == INVALID_COMMAND) continue; 
+
+                        }
+                        else if (command == "GoFish!") {
+                            int retFlag;
+                            handleComputerGoFishCommand(deck, computer, rankToAsk, computerPlaying, retFlag);
+                            if (retFlag == END_TURN) break;
+                        }
+                        else if (command == "show") {
+                            displayHand(player);
+                            continue;
+                        }
+                        else {
+                            std::cout << "Invalid command. Please type 'give <rank>' or 'GoFish!': \n";
+                            continue;
+                        }
+                }
+            }
+            checkForComputerSets(computer); // Check for full sets
+     }
 }
 
 // Helper Commands for Computer Turn
@@ -253,7 +257,7 @@ void handleComputerGoFishCommand(Deck& deck, Player& computer, std::string& rank
             // If the drawn card matches the initial rank, ask again
             if (drawn.rank == rankToAsk) {
                 std::cout << "But the card is a " << rankToAsk << " and can ask again!" << std::endl;
-                { retFlag = 2; return; };
+                { retFlag = END_TURN; return; }; 
             }
         }
     }
@@ -261,7 +265,7 @@ void handleComputerGoFishCommand(Deck& deck, Player& computer, std::string& rank
         std::cout << "The deck is empty. The computer cannot draw a card." << std::endl;
     }
     computerPlaying = false;
-    { retFlag = 2; return; }; // End turn after drawing
+    { retFlag = END_TURN; return; }; // End turn after drawing
 }
 
 void handlePlayerGiveCommand(std::string& providedRank, std::string& rankToAsk, Player& player, Player& computer, int& retFlag)
@@ -282,16 +286,16 @@ void handlePlayerGiveCommand(std::string& providedRank, std::string& rankToAsk, 
 
         if (hasGivenAny) {
             std::cout << "You gave all your " << rankToAsk << "s to the computer." << std::endl;
-            { retFlag = 2; return; }; // Computer can ask again
+            { retFlag = ASKAGAIN; return; }; // Computer can ask again
         }
         else {
             std::cout << "You do not have any " << rankToAsk << "s in your hand. Please check and try again: \n";
-            { retFlag = 3; return; };
+            { retFlag = INVALID_COMMAND; return; };
         }
     }
     else {
         std::cout << "Invalid card rank provided. Please check for " << rankToAsk << " and try again: \n";
-        { retFlag = 3; return; };
+        { retFlag = INVALID_COMMAND; return; };
 
     }
 }
@@ -327,8 +331,8 @@ void handleSecondPhase(Player& player, Player& computer) {
                 std::string rank;
                 std::cin >> rank;
                 int retFlag;
-                handlePlayerAskSetCommand(computer, rank, player, retFlag);
-                if (retFlag == 2) break;
+                handlePlayerAskSetCommand(computer, rank, player, retFlag); 
+                if (retFlag == END_TURN) break; // End player's turn
 
                 // Check if the game is over
                 if (isGameOver(player, computer)) {
@@ -351,7 +355,7 @@ void handleSecondPhase(Player& player, Player& computer) {
 
                 int retFlag;
                 handleComputerAskSet(player, rankToAsk, computer, retFlag); // Ask the player for a set
-                if (retFlag == 2) break;
+                if (retFlag == END_TURN) break; 
 
                 if (isGameOver(player, computer)) { // Check if the game is over
                     return;
@@ -383,7 +387,7 @@ void handleComputerAskSet(Player& player, std::string& rankToAsk, Player& comput
     }
     else {
         std::cout << "You does not have the set of " << rankToAsk << "s. The computer?s turn ends." << std::endl;
-        { retFlag = 2; return; }; // End computer's turn
+        { retFlag = END_TURN; return; }; // End computer's turn
     }
 }
 
@@ -404,16 +408,17 @@ void handlePlayerAskSetCommand(Player& computer, std::string& rank, Player& play
     }
     else {
         std::cout << "The computer does not have the set of " << rank << "s. Your turn ends." << std::endl;
-        { retFlag = 2; return; }; // End player's turn
+        { retFlag = END_TURN; return; }; // End player's turn
     }
 }
 
+// Checks if the game is ready to move to the second phase
 bool IsReadyForSecondPhase(const Deck& deck, const Player& player, const Player& computer)
 {
     return (!areThereCardsLeft(deck)) && (player.hand.empty()) && (computer.hand.empty());
 }
 
-
+// Determines the winner of the game
 Player determineWinner(const Player& player, const Player& computer) {
     if (player.claimedSets.size() == RANKS.size()) {
         std::cout << "You win by claiming all the sets!" << std::endl;
