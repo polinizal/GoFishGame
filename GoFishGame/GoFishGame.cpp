@@ -35,11 +35,11 @@ int main() {
 
     
     if (!isGameOver(player, computer)) {
-        handleSecondPhase(player, computer);
+        handleSecondPhase(player, computer); // Main game loop for the second phase
     }
 
     
-    determineWinner(player, computer);
+    determineWinner(player, computer); // Determine the winner of the game
 
     // End the game with a thank-you message
     std::cout << "Game over! Thank you for playing!" << std::endl;
